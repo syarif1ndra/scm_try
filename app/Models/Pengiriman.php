@@ -29,4 +29,11 @@ class Pengiriman extends Model
     {
         return $this->hasMany(OrderMaterial::class, 'pengiriman_id');
     }
+    // app/Models/Pengiriman.php
+
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
 }

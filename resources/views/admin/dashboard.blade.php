@@ -140,6 +140,30 @@
       </div>
     </div>
 
+    <div id="notification" class="position-fixed top-0 end-0 p-3" style="z-index: 1050; display: none;">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Notifikasi:</strong> <span id="notificationMessage"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            @if(session('status'))
+                const notificationMessage = @json(session('status'));
+
+                const notification = document.getElementById('notification');
+                const messageElement = document.getElementById('notificationMessage');
+                messageElement.textContent = notificationMessage;
+
+                notification.style.display = 'block';
+
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 7000); // Notifikasi hilang setelah 7 detik
+            @endif
+        });
+    </script>
     <!-- Main Content -->
     <main class="col-md-9 ms-sm-auto col-lg-9 col-xl-10 bg-body-tertiary min-vh-100">
       <div class="container-fluid">

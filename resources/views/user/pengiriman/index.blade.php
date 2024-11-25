@@ -27,6 +27,8 @@
                                     <th class="px-4 py-2">ID Pengiriman</th>
                                     <th class="px-4 py-2">Material ID</th>
                                     <th class="px-4 py-2">Tanggal Kirim</th>
+                                    <th class="px-4 py-2">Tanggal Kedatangan</th>
+
                                     <th class="px-4 py-2">Status Pengiriman</th>
                                 </tr>
                             </thead>
@@ -36,6 +38,8 @@
                                         <td class="px-4 py-2">{{ $item->id }}</td>
                                         <td class="px-4 py-2">{{ $item->material_id }}</td>
                                         <td class="px-4 py-2">{{ $item->tanggal_kirim }}</td>
+                                        <td class="px-4 py-2">{{ $item->tanggal_selesai }}</td>
+
                                         <td class="px-4 py-2">{{ $item->status_pengiriman }}</td>
                                     </tr>
                                 @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengiriman;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PengirimanController extends Controller
@@ -90,5 +91,24 @@ public function destroy($id)
     // Redirect kembali ke halaman pengiriman dengan pesan sukses
     return redirect()->route('admin.pengiriman')->with('success', 'Pengiriman berhasil dihapus!');
 }
+public function hitungSisaHari($id)
+{
+    // Ambil data pengiriman berdasarkan ID
+    $pengiriman = Pengiriman::findOrFail($id);
+
+    if ($pengiriman->tanggal_selesai) {
+        // Hitung sisa hari
+        $sisa_hari = Carbon::now()->diffInDays(Carbon::parse($pengiriman->tanggal_selesai), false);
+
+        if ($sisa_hari >= 0) {
+            return "Sisa waktu: {$sisa_hari} hari.";
+        } else {
+            return "Tanggal selesai sudah terlewati.";
+        }
+    } else {
+        return "Tanggal selesai belum ditentukan.";
+    }
+}
+
 
 }
